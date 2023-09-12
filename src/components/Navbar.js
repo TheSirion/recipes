@@ -9,7 +9,7 @@ function classNames(...classes) {
 export default function Navbar() {
     return (
         <div className='flex justify-evenly items-center h-36 mx-auto px-12'>
-            <h1 className='w-100 text-5xl font-bold p-12'>Title</h1>
+            <h1 className='w-100 text-5xl font-bold p-12'>Spice & Nice</h1>
             <div className='flex justify-center'>
                 <Menu as="div" className="relative inline-block text-left p-6">
                     <div>
