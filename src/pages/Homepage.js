@@ -1,6 +1,6 @@
 import React from 'react';
 import heroPic from '../assets/hero-pic.avif';
-// import HomepageCarousel from '../components/HomepageCarousel';
+import HomepageCarousel from '../components/HomepageCarousel';
 
 
 export default function Homepage() {
