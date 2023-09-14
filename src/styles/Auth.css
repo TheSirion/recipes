@@ -1,10 +1,22 @@
 /* Auth.css */
-.slide-up {
-    animation: slideUp 1s ease-in-out;
+.brand-title {
+    color: #FC871F;
 }
 
-.slide-down {
-    animation: slideDown 1.5s ease-in;
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    margin-left: 16px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.slide-up {
+    animation: slideUp 1.5s ease-in-out;
+}
+
+.fade-in {
+    animation: fadeIn 1.5s ease-in;
 }
 
 @keyframes slideUp {
@@ -19,20 +31,23 @@
     }
 }
 
-@keyframes slideDown {
+@keyframes fadeIn {
     0% {
-        transform: translateY(-100%);
+        position: relative;
+        left: -50px;
+        transform: scale(1.1);
+        filter: blur(10px);
         opacity: 0;
     }
 
     50% {
-        backdrop-filter: blur(10px);
-        transform: translateY(0);
-        opacity: 0.5;
+        position: relative;
+        left: 0px;
+        transform: scale(1.0);
     }
 
     100% {
-        backdrop-filter: blur(0px);
+        filter: blur(0px);
         opacity: 1;
     }
 }
