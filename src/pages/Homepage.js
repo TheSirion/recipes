@@ -7,8 +7,8 @@ export default function Homepage() {
     return (
         <div>
             <img src={heroPic} alt="Food"></img>
-            {/* <HomepageCarousel /> */}
-            
+
+            <HomepageCarousel />
         </div>
     )
 }

@@ -2,55 +2,68 @@ import React, { useState, useEffect } from "react";
 import ScrollCarousel from 'scroll-carousel-react';
 import "../index.css";
 
-// function getPopularDishes() {
-//     fetch(
-//         `https://api.spoonacular.com/recipes/complexSearch?sort=popularity&apiKey=04e92dacf91c47bf9f6fb150b4da316c`
-//     )
-//         .then(response => response.json())
-//         .then(data => {
-//             setPopularDishes(data)
-//         })
-//         .catch(() => {
-//             console.log("error")
-//         })
-// }
+// Figured we'd make separate keys since we only get 500 calls a month
+const ERICS_KEY = '29d1f15257mshe5f020a98cb379ap156e12jsn8b89eb930d0a'
 
+const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
 
-// export default function HomepageCarousel({ meal }) {
-//     const [imageUrl, setImageUrl] = useState("");
+const options = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': ERICS_KEY,
+        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+    }
+};
 
-//     useEffect(() => {
-//         fetch(
-//             `https://api.spoonacular.com/recipes/${meal.id}/complexSearch?sort=popularity&sortDirection=desc/information/&apiKey=04e92dacf91c47bf9f6fb150b4da316c`
-//         )
-//             .then(response => response.json())
-//             .then(data => {
-//                 setImageUrl(data.image)
-//             })
-//             .catch(() => {
-//                 console.log("error")
-//             })
-//     }, [meal.id])
+export default function HomepageCarousel() {
 
-//     return (
-//         <>
-//             <h1 className='text-4xl text-center py-20'>Popular Dishes</h1>
-//             <ScrollCarousel
-//                 autoplay
-//                 autoplaySpeed={2}
-//                 speed={2}
-//                 onReady={() => console.log('I am ready')}
-//             >
-//                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((meal) => (
-//                     <div key={meal} className='bg-blue-300/20 border-2 border-blue-300/70 rounded h-60 w-96'>
-//                         {meal}
-//                         <img src={imageUrl} alt='recipe' />
-//                         <h2>{meal.title}</h2>
-//                         <a href={meal.sourceUrl}>See Recipe</a>
-//                         <p></p>
-//                     </div>
-//                 ))}
-//             </ScrollCarousel>
-//         </>
-//     );
-// }
+    const [mealData, setMealData] = useState([])
+
+    useEffect(() => {
+        fetch(url, options)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((result) => {
+                setMealData(result.results);
+                console.log('Loaded meal data from API!');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+        // Empty array = run once, componentDidMount()
+    }, [])
+
+    return (
+        <>
+            <h1 className='text-4xl text-center py-20'>Popular Dishes</h1>
+
+            {/*
+             Technicially wont load until mealData has data.. 
+             we should intialize mealData with preset loading images
+            */}
+            {mealData.length > 0 && (
+
+                <ScrollCarousel
+                    autoplay
+                    autoplaySpeed={2}
+                    speed={2}
+                    onReady={() => console.log('I am ready')}
+                >
+                    {mealData.map((meal) => (
+                        <div key={meal.id} className='bg-blue-300/20 border-2 border-blue-300/70 rounded h-60 w-96'>
+                            <img src={meal.thumbnail_url} alt='recipe' />
+                            <h2>{meal.name}</h2>
+                            <p></p>
+                        </div>
+                    ))}
+
+                </ScrollCarousel >
+            )}
+        </>
+    );
+}
