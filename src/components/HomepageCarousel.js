@@ -40,7 +40,7 @@ export default function HomepageCarousel() {
 
     return (
         <>
-            <h1 className='text-4xl text-center py-20'>Popular Dishes</h1>
+            <h1 className='text-4xl font-bold text-center py-20'>Popular Dishes</h1>
 
             {/*
              Technicially wont load until mealData has data.. 
@@ -55,10 +55,10 @@ export default function HomepageCarousel() {
                     onReady={() => console.log('I am ready')}
                 >
                     {mealData.map((meal) => (
-                        <div key={meal.id} className='bg-blue-300/20 border-2 border-blue-300/70 rounded h-60 w-96'>
-                            <img src={meal.thumbnail_url} alt='recipe' />
-                            <h2>{meal.name}</h2>
-                            <p></p>
+                        <div key={meal.id} className='relative border-2 border-[#f79540] rounded h-[26rem] w-72 overflow-hidden !important'>
+                            <img src={meal.thumbnail_url} alt='recipe' className='h-72 w-100 rounded' />
+                            <h2 className='text-lg m-1'>{meal.name}</h2>
+                            <button className='absolute bottom-0 left-0 border-2 border-[#f79540] rounded-full hover:bg-[#f79540] p-2 m-1 object-right-bottom'>See Recipe</button>
                         </div>
                     ))}
 
