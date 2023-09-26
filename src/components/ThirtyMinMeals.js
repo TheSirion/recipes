@@ -16,6 +16,7 @@ export default function ThirtyMinMeals() {
 
     const [mealData, setMealData] = useState([])
 
+
     useEffect(() => {
         fetch(url, options)
             .then((response) => {
@@ -25,7 +26,8 @@ export default function ThirtyMinMeals() {
                 return response.json();
             })
             .then((result) => {
-                setMealData(result.results);
+                const slicedData = result.results.splice(0, 5); // We are using splice to modify the original array
+                setMealData(slicedData);
                 console.log('Loaded meal data from API!');
             })
             .catch((error) => {
@@ -33,20 +35,28 @@ export default function ThirtyMinMeals() {
             });
 
         // Empty array = run once, componentDidMount()
-    }, [])
+    }, []);
+
 
     return (
-        <div className='h-[60rem] px-40'>
-            <h1 className='text-4xl font-bold text-center py-20'>Under 30 Minute Meals</h1>
+        <div className="h-[60rem] px-40 relative">
+            <h1 className="text-4xl font-bold text-center py-20">Under 30 Minute Meals</h1>
 
-            {mealData.map((meal) => (
-                    <div key={meal.id} className='card-content'>
-                        <img src={meal.thumbnail_url} alt='recipe' className="h-auto w-[771px] float-right" />
-                        <h2 className='text-lg m-1'>{meal.name}</h2>
-                        <a href={meal.src}>See Recipe</a>
+            {mealData.map((meal, index) => (
+                <div key={meal.id} className={`card-content mb-6 ${index === 0 ? 'float-right' : ''}`}>
+                    <div className={`relative ${index === 0 ? 'float-right' : 'flex'}`}>
+                        <img
+                            src={meal.thumbnail_url}
+                            alt="recipe"
+                            className={`h-auto ${index === 0 ? 'w-[650px]' : 'w-40'}`}
+                        />
+                        <div className={`ml-4 ${index === 0 ? 'mt-[image_height] ml-0' : ''}`}>
+                            <h2 className="text-lg">{meal.name}</h2>
+                            <a href={meal.src}>See Recipe</a>
+                        </div>
                     </div>
+                </div>
             ))}
-
         </div>
     );
 }
