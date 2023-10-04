@@ -1,48 +1,50 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState, useRef } from 'react'
+import { CachedAPIRequest } from './util/CachedAPIRequest'
 
-const ERICS_KEY = '29d1f15257mshe5f020a98cb379ap156e12jsn8b89eb930d0a'
+const API_URL = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
 
-const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
+function getRandomElements(inputArray) {
+    // Make a copy of the input array to avoid modifying the original array
+    const shuffledArray = [...inputArray];
 
-const options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': ERICS_KEY,
-        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+    // Fisher-Yates (Knuth) Shuffle Algorithm
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
     }
-};
+
+    // Return the first 5 elements of the shuffled array
+    return shuffledArray.slice(0, 5);
+}
 
 export default function ThirtyMinMeals() {
 
-    const [mealData, setMealData] = useState([])
-
+    const [apiData, setData] = useState(undefined)
+    const loaded = useRef(false)
 
     useEffect(() => {
-        fetch(url, options)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((result) => {
-                const slicedData = result.results.splice(0, 5); // We are using splice to modify the original array
-                setMealData(slicedData);
-                console.log('Loaded meal data from API!');
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        /* Band-aid solution. Component was rendering twice..
+        couldn't quite figure out why, this solves that. */
+        if (loaded.current) return
+        else loaded.current = true
 
-        // Empty array = run once, componentDidMount()
-    }, []);
+        // Create CachedAPIRequest - use random tag each visit
+        const fetch = async () => {
+            const data = await CachedAPIRequest(API_URL, 'under_30_minutes')
 
+            // Our API call retrieves 20 random meals under 30 minutes
+            // We only want to display 5 of those at a time
+            if (data != null) setData(getRandomElements(data))
+        }
+
+        fetch();
+    }, [])
 
     return (
         <div className="h-[60rem] px-40 relative">
             <h1 className="text-4xl font-bold text-center py-20">Under 30 Minute Meals</h1>
 
-            {mealData.map((meal, index) => (
+            {apiData ? apiData.map((meal, index) => (
                 <div key={meal.id} className={`card-content mb-6 ${index === 0 ? 'float-right' : ''}`}>
                     <div className={`relative ${index === 0 ? 'float-right' : 'flex'}`}>
                         <img
@@ -56,7 +58,12 @@ export default function ThirtyMinMeals() {
                         </div>
                     </div>
                 </div>
-            ))}
+            )) : (
+                /* TODO   */
+                < p > Loading...</p >
+            )}
+
+
         </div>
     );
 }
