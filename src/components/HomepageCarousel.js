@@ -3,7 +3,9 @@ import { useEffect, useState, useRef } from 'react'
 import ScrollCarousel from 'scroll-carousel-react';
 import "../index.css";
 
-import { CachedAPIRequest } from './util/CachedAPIRequest'
+import { CachedAPIRequest } from './util/CachedAPIRequest';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=';
 
@@ -39,26 +41,28 @@ export default function HomepageCarousel() {
             const data = await CachedAPIRequest(API_URL + tag, '20_random_recipes_' + tag)
             setData(data)
         }
-        
+
         fetch();
     }, [])
 
     return (
         <>
-            <h1 className='text-4xl font-bold text-center py-20'>Popular Dishes</h1>
+            <h1 className='text-4xl font-bold text-center py-20 hover:underline decoration-2 decoration-[#f79540] cursor-pointer underline-offset-8'>Popular Dishes
+                <FontAwesomeIcon icon={faArrowRight} className="pl-4" />
+            </h1>
 
             {apiData ? (
                 <ScrollCarousel
                     autoplay
-                    autoplaySpeed={2}
-                    speed={2}
+                    autoplaySpeed={4}
+                    speed={8}
                     onReady={() => console.log('I am ready')}
                 >
                     {apiData.map((meal) => (
-                        <div key={meal.id} className='relative border-2 border-[#f79540] rounded h-[26rem] w-72 overflow-hidden !important'>
+                        <div key={meal.id} className='relative cursor-pointer mb-10 border-2 border-[#f79540] rounded h-[22rem] w-72 overflow-hidden !important' onClick={meal.src}>
                             <img src={meal.thumbnail_url} alt='recipe' className='h-72 w-100 rounded' />
-                            <h2 className='text-lg m-1'>{meal.name}</h2>
-                            <button className='absolute bottom-0 left-0 border-2 border-[#f79540] rounded-full hover:bg-[#f79540] p-2 m-1 object-right-bottom'>See Recipe</button>
+                            <h2 className='text-md m-1'>{meal.name}</h2>
+                            {/* <a className='m-1 absolute bottom-0 left-0 hover:underline decoration-2 decoration-[#f79540] cursor-pointer underline-offset-8 object-right-bottom' href={meal.src}>See Recipe</a> */}
                         </div>
                     ))}
 
