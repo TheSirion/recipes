@@ -1,60 +1,60 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState, useRef } from 'react'
+
 import ScrollCarousel from 'scroll-carousel-react';
 import "../index.css";
 
-// Figured we'd make separate keys since we only get 500 calls a month
-const ERICS_KEY = '29d1f15257mshe5f020a98cb379ap156e12jsn8b89eb930d0a'
+import { CachedAPIRequest } from './util/CachedAPIRequest'
 
-const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
+const API_URL = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=';
 
-const options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': ERICS_KEY,
-        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-    }
-};
+/* Random tags I pulled from https://tasty.p.rapidapi.com/tags/list */
+const featuredTags = [
+    'dole_hearty_meals',
+    'mccormick_world_hearty',
+    'soul_food',
+]
+
+/* Each load, randomly pick 1 random tag */
+const randomFeaturedTag = () => {
+    const tag = Math.floor(Math.random() * featuredTags.length)
+    console.log(`Using featured tag "${featuredTags[tag]}"`)
+
+    return featuredTags[tag]
+}
 
 export default function HomepageCarousel() {
 
-    const [mealData, setMealData] = useState([])
+    const [apiData, setData] = useState(undefined)
+    const loaded = useRef(false)
 
     useEffect(() => {
-        fetch(url, options)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((result) => {
-                setMealData(result.results);
-                console.log('Loaded meal data from API!');
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        /* Band-aid solution. Component was rendering twice..
+        couldn't quite figure out why, this solves that. */
+        if (loaded.current) return
+        else loaded.current = true
 
-        // Empty array = run once, componentDidMount()
+        // Create CachedAPIRequest - use random tag each visit
+        const fetch = async () => {
+            const tag = randomFeaturedTag()
+            const data = await CachedAPIRequest(API_URL + tag, '20_random_recipes_' + tag)
+            setData(data)
+        }
+        
+        fetch();
     }, [])
 
     return (
         <>
             <h1 className='text-4xl font-bold text-center py-20'>Popular Dishes</h1>
 
-            {/*
-             Technicially wont load until mealData has data.. 
-             we should intialize mealData with preset loading images
-            */}
-            {mealData.length > 0 && (
-
+            {apiData ? (
                 <ScrollCarousel
                     autoplay
                     autoplaySpeed={2}
                     speed={2}
                     onReady={() => console.log('I am ready')}
                 >
-                    {mealData.map((meal) => (
+                    {apiData.map((meal) => (
                         <div key={meal.id} className='relative border-2 border-[#f79540] rounded h-[26rem] w-72 overflow-hidden !important'>
                             <img src={meal.thumbnail_url} alt='recipe' className='h-72 w-100 rounded' />
                             <h2 className='text-lg m-1'>{meal.name}</h2>
@@ -63,7 +63,15 @@ export default function HomepageCarousel() {
                     ))}
 
                 </ScrollCarousel >
-            )}
+            ) : (
+                /* TODO 
+                    Technicially wont load until mealData has data.. 
+                    we should intialize mealData with preset loading images
+                */
+
+                < p > Loading...</p >
+            )
+            }
         </>
     );
 }
