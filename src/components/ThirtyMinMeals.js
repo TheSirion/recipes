@@ -1,5 +1,7 @@
-import { useEffect, useState, useRef } from 'react'
-import { CachedAPIRequest } from './util/CachedAPIRequest'
+import { useEffect, useState, useRef } from 'react';
+import { CachedAPIRequest } from './util/CachedAPIRequest';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
 
@@ -41,8 +43,10 @@ export default function ThirtyMinMeals() {
     }, [])
 
     return (
-        <div className="h-[60rem] px-40 relative">
-            <h1 className="text-4xl font-bold text-center py-20">Under 30 Minute Meals</h1>
+        <div className="h-[60rem] px-40 bg-gradient-to-r from-[#FE8924] to-[#B53602] relative">
+            <h1 className="text-4xl font-bold text-center py-20 hover:underline decoration-2 decoration-[#f79540] cursor-pointer underline-offset-8">Under 30 Minute Meals
+                <FontAwesomeIcon icon={faArrowRight} className="pl-4" />
+            </h1>
 
             {apiData ? apiData.map((meal, index) => (
                 <div key={meal.id} className={`card-content mb-6 ${index === 0 ? 'float-right' : ''}`}>
@@ -54,7 +58,7 @@ export default function ThirtyMinMeals() {
                         />
                         <div className={`ml-4 ${index === 0 ? 'mt-[image_height] ml-0' : ''}`}>
                             <h2 className="text-lg">{meal.name}</h2>
-                            <a href={meal.src}>See Recipe</a>
+                            <a className='hover:underline decoration-2 decoration-[#f79540] cursor-pointer underline-offset-8' href={meal.src}>See Recipe</a>
                         </div>
                     </div>
                 </div>
