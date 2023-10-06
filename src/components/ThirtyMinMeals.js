@@ -43,8 +43,8 @@ export default function ThirtyMinMeals() {
     }, [])
 
     return (
-        <div className="h-[60rem] px-40 bg-gradient-to-r from-[#FE8924] to-[#B53602] relative">
-            <h1 className="text-4xl font-bold text-center py-20 hover:underline decoration-2 decoration-[#f79540] cursor-pointer underline-offset-8">Under 30 Minute Meals
+        <div className="h-[60rem] px-40 bg-gradient-to-b from-white to-[#14B8A6] relative">
+            <h1 className="text-4xl font-bold text-center py-20 hover:underline decoration-2 decoration-[#14B8A6] cursor-pointer underline-offset-8">Under 30 Minute Meals
                 <FontAwesomeIcon icon={faArrowRight} className="pl-4" />
             </h1>
 
@@ -54,11 +54,11 @@ export default function ThirtyMinMeals() {
                         <img
                             src={meal.thumbnail_url}
                             alt="recipe"
-                            className={`h-auto ${index === 0 ? 'w-[650px]' : 'w-40'}`}
+                            className={`h-auto shadow-2xl ${index === 0 ? 'w-[650px]' : 'w-40'}`}
                         />
                         <div className={`ml-4 ${index === 0 ? 'mt-[image_height] ml-0' : ''}`}>
                             <h2 className="text-lg">{meal.name}</h2>
-                            <a className='hover:underline decoration-2 decoration-[#f79540] cursor-pointer underline-offset-8' href={meal.src}>See Recipe</a>
+                            <a className='hover:underline decoration-2 decoration-[#14B8A6] cursor-pointer underline-offset-8' href={meal.src}>See Recipe</a>
                         </div>
                     </div>
                 </div>
