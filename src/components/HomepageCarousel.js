@@ -47,35 +47,38 @@ export default function HomepageCarousel() {
 
     return (
         <>
-            <h1 className='text-4xl font-bold text-center py-20 hover:underline decoration-2 decoration-[#14B8A6] cursor-pointer underline-offset-8'>Popular Dishes
-                <FontAwesomeIcon icon={faArrowRight} className="pl-4" />
-            </h1>
-
-            {apiData ? (
-                <ScrollCarousel
-                    autoplay
-                    autoplaySpeed={2}
-                    speed={2}
-                    onReady={() => console.log('I am ready')}
-                >
-                    {apiData.map((meal) => (
-                        <div key={meal.id} className='relative cursor-pointer mb-10 border-2 border-[#14B8A6] rounded h-[22rem] w-72 overflow-hidden !important' onClick={meal.src}>
-                            <img src={meal.thumbnail_url} alt='recipe' className='h-72 w-100 rounded' />
-                            <h2 className='text-md m-1'>{meal.name}</h2>
-                            {/* <a className='m-1 absolute bottom-0 left-0 hover:underline decoration-2 decoration-[#f79540] cursor-pointer underline-offset-8 object-right-bottom' href={meal.src}>See Recipe</a> */}
-                        </div>
-                    ))}
-
-                </ScrollCarousel >
-            ) : (
-                /* TODO 
-                    Technicially wont load until mealData has data.. 
-                    we should intialize mealData with preset loading images
-                */
-
-                < p > Loading...</p >
-            )
-            }
+        <div className='flex justify-between p-16'>
+          <h1 className='text-5xl font-bold text-[#292015] underline decoration-6 decoration-[#86905e] cursor-pointer underline-offset-8'>
+            Popular Dishes
+          </h1>
+          <h1 className='text-4xl font-bold text-right text-[#D57D18] hover:underline decoration-2 decoration-[#86905e] cursor-pointer underline-offset-8'>
+            See More
+            <FontAwesomeIcon icon={faArrowRight} className="pl-4 text-black" />
+          </h1>
+          </div>
+          
+      
+          {apiData ? (
+            <ScrollCarousel
+              autoplay
+              autoplaySpeed={2}
+              speed={2}
+              onReady={() => console.log('I am ready')}
+            >
+              {apiData.map((meal) => (
+                <div key={meal.id} className='relative cursor-pointer mb-10 bg-[#292015] rounded h-72 w-72 overflow-hidden !important'>
+                  <img src={meal.thumbnail_url} alt='recipe' className='h-72 w-100 rounded' />
+                  <div className='absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-white bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300'>
+                    <h2 className='text-md text-center m-1'>{meal.name}</h2>
+                    <a className='m-1 hover:underline decoration-2 decoration-[#86905e] cursor-pointer underline-offset-8' href={meal.src}>See Recipe</a>
+                  </div>
+                </div>
+              ))}
+            </ScrollCarousel>
+          ) : (
+            <p>Loading...</p>
+          )}
         </>
-    );
+      );
+      
 }

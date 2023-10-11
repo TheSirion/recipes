@@ -3,7 +3,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import backgroundImage from '../assets/backgroundImage.jpeg';
+import backgroundImage2 from '../assets/backgroundImage2.webp';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -11,16 +11,16 @@ function classNames(...classes) {
 
 export default function Navbar() {
     return (
-        <div className="bg-cover bg-center h-screen" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="bg-cover bg-center h-screen" style={{ backgroundImage: `url(${backgroundImage2})` }}>
             <div class="absolute inset-0">
-                <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent via-white-75 to-white"></div>
+                <div class="absolute inset-x-0 bottom-0 h-20"></div>
             </div>
-            <div className='flex justify-evenly items-center h-36 mx-auto px-12'>
-                <h1 className='w-100 text-5xl text-[#86805e] font-bold p-12'>Spice & Nice</h1>
+            <div className='flex justify-evenly bg-white bg-opacity-50 items-center h-28 mx-auto px-12'>
+                <h1 className='w-100 text-5xl text-[#2f4c28] font-bold p-12'>Spice & Nice</h1>
                 <div className='flex justify-center'>
                     <Menu as="div" className="relative inline-block text-left p-6">
                         <div>
-                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#14B8A6] underline-offset-8">
+                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#86905e] underline-offset-8">
                                 Dinners
                                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Menu.Button>
@@ -122,7 +122,7 @@ export default function Navbar() {
 
                     <Menu as="div" className="relative inline-block text-left p-6">
                         <div>
-                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#14B8A6] underline-offset-8">
+                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#86905e] underline-offset-8">
                                 Meals
                                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Menu.Button>
@@ -237,7 +237,7 @@ export default function Navbar() {
 
                     <Menu as="div" className="relative inline-block text-left p-6">
                         <div>
-                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#14B8A6] underline-offset-8">
+                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#86905e] underline-offset-8">
                                 Cuisines
                                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Menu.Button>
@@ -352,7 +352,7 @@ export default function Navbar() {
 
                     <Menu as="div" className="relative inline-block text-left p-6">
                         <div>
-                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#14B8A6] underline-offset-8">
+                            <Menu.Button className="inline-flex w-full justify-center rounded-md px-3 py-2 text-base hover:underline decoration-2 decoration-[#86905e] underline-offset-8">
                                 Meal Prep
                                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                             </Menu.Button>
@@ -413,16 +413,16 @@ export default function Navbar() {
                         </Transition>
                     </Menu>
                 </div>
-                <div class="relative text-lg bg-transparent text-gray-800">
+                <div class="relative text-lg bg-transparent">
                     <div class="flex items-center border-b border-b-2 border-[#2f4c28] py-2">
                         <input class="bg-transparent border-none mr-3 px-2 leading-tight focus:outline-none" type="text" placeholder="Search" />
                         <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
-                            <FontAwesomeIcon className="pb-2" icon={faMagnifyingGlass} style={{ color: "#000000" }} />
+                            <FontAwesomeIcon className="pb-2" icon={faMagnifyingGlass} style={{ color: "#2f4c28" }} />
                         </button>
                     </div>
                 </div>
             </div>
-            <h1 className='text-6xl text-right text-[#2f4c28] leading-relaxed pt-40 pr-20 font-bold'>Your One Stop Shop<br />For All Things Delish</h1>
+            <h1 className='text-6xl text-right leading-relaxed pt-40 pr-20 font-bold'>Your One Stop Shop<br />For All Things Delish</h1>
         </div>
     )
 }
