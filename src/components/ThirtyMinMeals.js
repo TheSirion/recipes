@@ -16,7 +16,7 @@ function getRandomElements(inputArray) {
     }
 
     // Return the first 5 elements of the shuffled array
-    return shuffledArray.slice(0, 5);
+    return shuffledArray.slice(0, 4);
 }
 
 export default function ThirtyMinMeals() {
@@ -43,13 +43,13 @@ export default function ThirtyMinMeals() {
     }, [])
 
     return (
-        <div className="h-[60rem] px-40 bg-gradient-to-b from-white to-[#14B8A6] relative">
-            <h1 className="text-4xl font-bold text-center py-20 hover:underline decoration-2 decoration-[#14B8A6] cursor-pointer underline-offset-8">Under 30 Minute Meals
+        <div className="h-[60rem] mx-32 relative">
+            <h1 className="text-4xl font-bold text-center py-20 hover:underline decoration-2 decoration-[#86905e] cursor-pointer underline-offset-8">Under 30 Minute Meals
                 <FontAwesomeIcon icon={faArrowRight} className="pl-4" />
             </h1>
 
             {apiData ? apiData.map((meal, index) => (
-                <div key={meal.id} className={`card-content mb-6 ${index === 0 ? 'float-right' : ''}`}>
+                <div key={meal.id} className={`card-content m-10 p-8 bg-[#86905e] rounded-lg w-[45%] ${index === 0 ? 'float-right' : ''}`}>
                     <div className={`relative ${index === 0 ? 'float-right' : 'flex'}`}>
                         <img
                             src={meal.thumbnail_url}
@@ -70,4 +70,5 @@ export default function ThirtyMinMeals() {
 
         </div>
     );
+      
 }
