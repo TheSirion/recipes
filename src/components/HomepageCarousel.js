@@ -47,11 +47,11 @@ export default function HomepageCarousel() {
 
     return (
         <>
-        <div className='flex justify-between p-16'>
+        <div className='flex justify-between py-16 px-28'>
           <h1 className='text-5xl font-bold text-[#292015] underline decoration-6 decoration-[#86905e] cursor-pointer underline-offset-8'>
             Popular Dishes
           </h1>
-          <h1 className='text-4xl font-bold text-right text-[#D57D18] hover:underline decoration-2 decoration-[#86905e] cursor-pointer underline-offset-8'>
+          <h1 className='text-4xl font-bold text-right text-[#D57D18] cursor-pointer underline-offset-8'>
             See More
             <FontAwesomeIcon icon={faArrowRight} className="pl-4 text-black" />
           </h1>
@@ -70,7 +70,7 @@ export default function HomepageCarousel() {
                   <img src={meal.thumbnail_url} alt='recipe' className='h-72 w-100 rounded' />
                   <div className='absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-white bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300'>
                     <h2 className='text-md text-center m-1'>{meal.name}</h2>
-                    <a className='m-1 hover:underline decoration-2 decoration-[#86905e] cursor-pointer underline-offset-8' href={meal.src}>See Recipe</a>
+                    <a className='m-1 hover:underline decoration-2 decoration-[#D57D18] cursor-pointer underline-offset-8' href={meal.src}>See Recipe</a>
                   </div>
                 </div>
               ))}
