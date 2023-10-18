@@ -22,7 +22,7 @@ export default function HomepageCarousel() {
   const loaded = useRef(false);
 
   /* Each load, randomly pick 1 random tag */
-  const randomFeaturedTag = () => {
+  const randomizeFeaturedTag = () => {
     const tag = Math.floor(Math.random() * featuredTags.length);
     console.log(`Using featured tag "${featuredTags[tag]}"`);
 
@@ -37,7 +37,7 @@ export default function HomepageCarousel() {
 
     // Create CachedAPIRequest - use random tag each visit
     const fetch = async () => {
-      const tag = randomFeaturedTag();
+      const tag = randomizeFeaturedTag();
       const data = await CachedAPIRequest(
         API_URL + tag,
         '20_random_recipes_' + tag
