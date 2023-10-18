@@ -8,10 +8,10 @@ import Homepage from './pages/Homepage';
 function App() {
   return (
     <div>
+      {/* <Auth /> */}
       <Navbar />
       <Homepage />
   
-      {/* <Auth /> */}
        
     </div>
   );
