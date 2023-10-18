@@ -1,8 +1,8 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
-import { CachedAPIRequest } from './util/CachedAPIRequest';
-import { getRandomElements } from './util/utils';
+import { CachedAPIRequest } from '../utils/CachedAPIRequest';
+import { getRandomElements } from '../utils/utils';
 
 const API_URL =
   'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=dietary';

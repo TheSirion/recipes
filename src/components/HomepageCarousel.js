@@ -5,7 +5,7 @@ import '../index.css';
 
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CachedAPIRequest } from './util/CachedAPIRequest';
+import { CachedAPIRequest } from '../utils/CachedAPIRequest';
 
 const API_URL =
   'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=';
