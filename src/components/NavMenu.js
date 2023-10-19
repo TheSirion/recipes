@@ -3,7 +3,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 const NavMenu = props => {
   const { menuItems } = props;
-
+  const { name, items } = menuItems;
   return (
     <>
       <Menu
@@ -11,7 +11,7 @@ const NavMenu = props => {
         className='relative inline-block text-left p-6'>
         <div>
           <Menu.Button className='inline-flex w-full justify-center px-3 py-2 text-lg hover:underline decoration-2 decoration-[#D57D18] underline-offset-8'>
-            {menuItems.name}
+            {name}
             <ChevronDownIcon
               className='-mr-1 h-5 w-5 text-gray-400'
               aria-hidden='true'
@@ -29,7 +29,7 @@ const NavMenu = props => {
           leaveTo='transform opacity-0 scale-95'>
           <Menu.Items className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
             <div className='py-1'>
-              {menuItems.items.map(item => {
+              {items.map(item => {
                 return (
                   <Menu.Item key={item}>
                     {({ active }) => (
