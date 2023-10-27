@@ -1,12 +1,9 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
-import Homepage from '../pages/Homepage';
 import { CachedAPIRequest } from '../utils/CachedAPIRequest';
 import { getRandomElements } from '../utils/utils';
 
-// const API_URL =
-//   'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
 
 export default function DietAndQuickCategorySection({ apiUrl, title }) {
   const [apiData, setData] = useState(undefined);
