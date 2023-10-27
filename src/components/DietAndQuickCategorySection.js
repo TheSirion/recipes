@@ -4,10 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { CachedAPIRequest } from '../utils/CachedAPIRequest';
 import { getRandomElements } from '../utils/utils';
 
-const API_URL =
-  'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes';
 
-export default function ThirtyMinMeals() {
+export default function DietAndQuickCategorySection({ apiUrl, title }) {
   const [apiData, setData] = useState(undefined);
   const loaded = useRef(false);
 
@@ -19,7 +17,7 @@ export default function ThirtyMinMeals() {
 
     // Create CachedAPIRequest - use random tag each visit
     const fetch = async () => {
-      const data = await CachedAPIRequest(API_URL, 'under_30_minutes');
+      const data = await CachedAPIRequest(apiUrl, 'under_30_minutes');
 
       // Our API call retrieves 20 random meals under 30 minutes
       // We only want to display 5 of those at a time
@@ -27,13 +25,13 @@ export default function ThirtyMinMeals() {
     };
 
     fetch();
-  }, []);
+  }, [apiUrl]);
 
   return (
     <div className='h-[75rem] relative bg-slate-100'>
       <div className='flex justify-between py-24 px-28'>
         <h1 className='text-5xl font-bold text-[#292015] underline decoration-6 decoration-[#86905e] cursor-pointer underline-offset-8'>
-          Under 30 Minute Meals
+          {title}
         </h1>
         <h1 className='text-4xl font-bold text-right text-[#D57D18] cursor-pointer underline-offset-8'>
           See More
