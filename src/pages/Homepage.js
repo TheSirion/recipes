@@ -13,7 +13,7 @@ export default function Homepage() {
     return (
         <div>
             <HomepageCarousel />
-            <DietAndQuickCategorySection title="Thirty Minute Meals" apiUrl={thirtyMinMealsApiUrl} />
+            <DietAndQuickCategorySection title="Thirty Minute Meals" apiUrl={thirtyMinMealsApiUrl}  />
             <Seasonal />
             <DietAndQuickCategorySection title="Diet Friendly" apiUrl={dietFriendlyApiUrl} />
             <FooterSection />
