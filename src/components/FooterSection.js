@@ -42,9 +42,8 @@ export default function FooterSection() {
     };
 
     return (
-        <div className="flex items-end w-full bg-white">
+        <footer className="w-full text-gray-700 bg-gray-300 body-font">
 
-            <div className="w-full text-gray-700 bg-gray-300 body-font">
                 <div
                     className="container flex flex-col flex-wrap px-5 py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap">
                     <div className="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
@@ -53,7 +52,7 @@ export default function FooterSection() {
                         </a>
                         <p className="mt-2 text-sm text-gray-500">Everything Delish!</p>
                     </div>
-                    <div className="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-20 md:mt-0 md:text-left">
+                    <div className="flex flex-grow items-start mt-10 -mb-10 text-center md:pl-20 md:mt-0 md:text-left">
                         <Footer footerItems={dinnersMenu} />
                         <Footer footerItems={mealsMenu} />
                         <Footer footerItems={cuisinesMenu} />
@@ -65,9 +64,8 @@ export default function FooterSection() {
                         <p className="text-sm text-gray-700 capitalize xl:text-center">Made with ❤️ by Alexis Benavidez</p>
                     </div>
                 </div>
-            </div>
 
-        </div>
+         </footer>
     );
 }
 
