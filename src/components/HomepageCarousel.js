@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-
 import ScrollCarousel from 'scroll-carousel-react';
 import '../index.css';
-
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CachedAPIRequest } from '../utils/CachedAPIRequest';
+import { fetchFeaturedRecipes } from '../utils/utils';
 
 const API_URL =
   'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=';
@@ -13,7 +11,7 @@ const API_URL =
 /* Random tags I pulled from https://tasty.p.rapidapi.com/tags/list */
 const featuredTags = [
   'dole_hearty_meals',
-  'mccormick_world_hearty',
+  'mccormick_world_oushearty',
   'soul_food',
 ];
 
@@ -36,16 +34,13 @@ export default function HomepageCarousel() {
     else loaded.current = true;
 
     // Create CachedAPIRequest - use random tag each visit
-    const fetch = async () => {
+    const fetchData = async () => {
       const tag = randomizeFeaturedTag();
-      const data = await CachedAPIRequest(
-        API_URL + tag,
-        '20_random_recipes_' + tag
-      );
+      const data = await fetchFeaturedRecipes(tag); // Use the utility function
       setData(data);
     };
 
-    fetch();
+    fetchData();
   }, []);
 
   return (

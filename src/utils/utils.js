@@ -1,3 +1,5 @@
+import { CachedAPIRequest } from './CachedAPIRequest';
+
 export function getRandomElements(inputArray) {
   // Make a copy of the input array to avoid modifying the original array
   const shuffledArray = [...inputArray];
@@ -11,3 +13,16 @@ export function getRandomElements(inputArray) {
   // Return the first 5 elements of the shuffled array
   return shuffledArray.slice(0, 6);
 }
+
+const API_URL = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=';
+
+// HomepageCarousel.js
+export async function fetchFeaturedRecipes(tag) {
+  return CachedAPIRequest(API_URL + tag, `20_random_recipes_${tag}`);
+}
+
+// DietAndQuickCategorySection.js
+export async function fetchDataByTag(apiUrl, tag) {
+  return CachedAPIRequest(apiUrl, tag);
+}
+

@@ -1,11 +1,12 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
-import { CachedAPIRequest } from '../utils/CachedAPIRequest';
-import { getRandomElements } from '../utils/utils';
+// import { CachedAPIRequest } from '../utils/CachedAPIRequest';
+// import { getRandomElements } from '../utils/utils';
+import { fetchDataByTag } from '../utils/utils';
 
 
-export default function DietAndQuickCategorySection({ apiUrl, title }) {
+export default function DietAndQuickCategorySection({ apiUrl, title, tag }) {
   const [apiData, setData] = useState(undefined);
   const loaded = useRef(false);
 
@@ -15,17 +16,16 @@ export default function DietAndQuickCategorySection({ apiUrl, title }) {
     if (loaded.current) return;
     else loaded.current = true;
 
-    // Create CachedAPIRequest - use random tag each visit
-    const fetch = async () => {
-      const data = await CachedAPIRequest(apiUrl, 'under_30_minutes');
+    // Create CachedAPIRequest - use the provided API URL with the specified tag
+    const fetchData = async () => {
+      const data = await fetchDataByTag(apiUrl, tag);
 
-      // Our API call retrieves 20 random meals under 30 minutes
-      // We only want to display 5 of those at a time
-      if (data != null) setData(getRandomElements(data));
+      // Customize the data processing as needed
+      if (data != null) setData(data.slice(0, 6)); 
     };
 
-    fetch();
-  }, [apiUrl]);
+    fetchData();
+  }, [apiUrl, tag]);
 
   return (
     <div className='h-[75rem] relative bg-slate-100'>
