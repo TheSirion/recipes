@@ -13,7 +13,7 @@ const NavMenu = props => {
           <Menu.Button className='inline-flex w-full justify-center px-3 py-2 text-lg hover:underline decoration-2 decoration-[#D57D18] underline-offset-8'>
             {name}
             <ChevronDownIcon
-              className='-mr-1 h-5 w-5 text-gray-400'
+              className='mt-1 h-5 w-5 text-black'
               aria-hidden='true'
             />
           </Menu.Button>

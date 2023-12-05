@@ -4,14 +4,9 @@ import Navbar from './Navbar';
 const Hero = () => {
   return (
     <div
-      className='bg-cover bg-center h-[50rem]'
+      className='bg-cover bg-center h-[43rem]'
       style={{ backgroundImage: `url(${backgroundImage2})` }}>
       <Navbar />
-      <h1 className='text-6xl text-right leading-relaxed pt-40 pr-20 font-bold'>
-        Your One Stop Shop
-        <br />
-        For All Things Delish
-      </h1>
     </div>
   );
 };
