@@ -45,10 +45,10 @@ export default function FooterSection() {
         <footer className="w-full text-gray-700 bg-gray-300 body-font">
 
                 <div
-                    className="container flex flex-col flex-wrap px-5 py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap">
+                    className="container flex flex-col flex-wrap px-5 py-20 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap">
                     <div className="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
                         <a className="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
-                            <h2 className="text-2xl">Spice & Nice</h2>
+                            <h2 className="text-2xl font-bold text-[#649C14]">Spice & Nice</h2>
                         </a>
                         <p className="mt-2 text-sm text-gray-500">Everything Delish!</p>
                     </div>
