@@ -47,9 +47,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* <div class='absolute inset-0'>
-        <div class='absolute inset-x-0 bottom-0 h-20'></div>
-      </div> */}
       <div className='flex justify-evenly bg-white bg-opacity-50 items-center h-28 mx-auto px-12'>
         <h1 className='w-100 text-5xl text-[#649C14] font-bold p-12'>
           Spice & Nice
@@ -61,7 +58,7 @@ export default function Navbar() {
           <NavMenu menuItems={mealPrepMenu} />
         </div>
         <Search />
-        <button href='src/pages/Auth.js' className='w-102 h-10 bg-[#649C14] bg-opacity-50 border-solid border-2 border-black text-lg p-3 rounded-3xl flex items-center'>Sign Up</button>
+        <button href='src/pages/Auth.js' className='w-102 h-10 bg-[#649C14] bg-opacity-50 hover:bg-[#649C14] border-solid border-2 border-black text-lg p-3 rounded-3xl flex items-center'>Sign Up</button>
         <a href='src/pages/Auth.js' className='text-lg hover:underline decoration-2 decoration-[#D57D18] underline-offset-8'>Log In</a>
       </div>
     </>

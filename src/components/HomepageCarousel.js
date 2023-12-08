@@ -46,16 +46,18 @@ export default function HomepageCarousel() {
   return (
     <>
       <div className='flex justify-between py-16 px-28'>
-        <h1 className='text-5xl font-bold text-[#292015] underline decoration-6 decoration-[#86905e] cursor-pointer underline-offset-8'>
+        <h1 className='text-5xl font-bold text-[#649C14] cursor-pointer underline-offset-8'>
           Popular Dishes
         </h1>
-        <h1 className='text-4xl font-bold text-right text-[#D57D18] cursor-pointer underline-offset-8'>
-          See More
-          <FontAwesomeIcon
-            icon={faArrowRight}
-            className='pl-4 text-black'
-          />
-        </h1>
+        <div className='text-right text-[#D57D18] cursor-pointer underline-offset-8 hover-translate'>
+          <h1 className='text-4xl'>
+            See More
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              className='pl-4 text-black icon-translate'
+            />
+          </h1>
+        </div>
       </div>
 
       {apiData ? (

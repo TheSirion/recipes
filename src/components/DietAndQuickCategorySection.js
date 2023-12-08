@@ -28,18 +28,20 @@ export default function DietAndQuickCategorySection({ apiUrl, title, tag }) {
   }, [apiUrl, tag]);
 
   return (
-    <div className='h-[75rem] relative bg-slate-100'>
-      <div className='flex justify-between py-24 px-28'>
-        <h1 className='text-5xl font-bold text-[#292015] underline decoration-6 decoration-[#86905e] cursor-pointer underline-offset-8'>
+    <div className='h-[75rem] relative'>
+      <div className='flex justify-between py-20 px-28'>
+        <h1 className='text-5xl font-bold text-[#649C14] cursor-pointer underline-offset-8'>
           {title}
         </h1>
-        <h1 className='text-4xl font-bold text-right text-[#D57D18] cursor-pointer underline-offset-8'>
-          See More
-          <FontAwesomeIcon
-            icon={faArrowRight}
-            className='pl-4 text-black'
-          />
-        </h1>
+        <div className='text-right text-[#D57D18] cursor-pointer underline-offset-8 hover-translate'>
+          <h1 className='text-4xl'>
+            See More
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              className='pl-4 text-black icon-translate'
+            />
+          </h1>
+        </div>
       </div>
 
       <div className='grid grid-cols-3 gap-8'>
@@ -53,11 +55,11 @@ export default function DietAndQuickCategorySection({ apiUrl, title, tag }) {
                   <img
                     src={meal.thumbnail_url}
                     alt='recipe'
-                    className='shadow-2xl rounded-md h-72 w-100 object-cover'
+                    className='shadow-2xl rounded-lg h-72 w-100 object-cover'
                   />
                 </div>
                 <div className='mt-4'>
-                  <h2 className='text-lg'>{meal.name}</h2>
+                  <h2 className='text-lg font-bold'>{meal.name}</h2>
                   <a
                     className='hover:underline decoration-2 decoration-[#D57D18] cursor-pointer underline-offset-8'
                     href={meal.src}>
